@@ -1,5 +1,5 @@
 ﻿# ShazamWish
-![D4727D25-9467-4054-A06D-52A752A5712B](https://github.com/Nyries/ShazamWish/assets/136320490/06af331c-1ea3-4de8-8f1e-5d21b7ee2a82)
- 
+<img src="https://github.com/Nyries/ShazamWish/assets/136320490/e118a0f1-b82d-4717-84b3-fd9f3296dba9" width="300" />
+
 ![Screenshot](subject.png)
 
