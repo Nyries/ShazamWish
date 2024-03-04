@@ -46,11 +46,10 @@ def fingerprint(audio_file):
 
     img = librosa.display.specshow(chromagram, y_axis='chroma', x_axis='time', ax=ax[1])
     fig.colorbar(img, ax=[ax[1]])
-    
+
     plt.show()
 
     return fingerprint.tolist()
-
 
 
 fingerprint(filename)
