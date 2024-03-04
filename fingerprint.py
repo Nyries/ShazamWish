@@ -1,5 +1,6 @@
 import librosa
 import numpy as np
+import matplotlib.pyplot as plt
 
 filename = "music.mp3"
 
@@ -35,10 +36,20 @@ def fingerprint(audio_file):
     # Convert in a fingerprint
     fingerprint = np.argmax(chromagram, axis=0)
 
+    
     print('Fingerprint : \n',fingerprint.tolist())
+    #Plotting spectrogram and chromagram
+    fig, ax = plt.subplots(nrows=3, sharex=True)
+    img = librosa.display.specshow(librosa.amplitude_to_db(spectrogram, ref=np.max),y_axis='log', x_axis='time', ax=ax[0])
+    fig.colorbar(img, ax=[ax[0]])
+    ax[0].label_outer()
+
+    img = librosa.display.specshow(chromagram, y_axis='chroma', x_axis='time', ax=ax[1])
+    fig.colorbar(img, ax=[ax[1]])
+
+    plt.show()
 
     return fingerprint.tolist()
-
 
 
 fingerprint(filename)
