@@ -2,7 +2,7 @@ import librosa
 import numpy as np
 import matplotlib.pyplot as plt
 
-filename = "music.mp3"
+filename = "sound/music.mp3"
 
 
 y, sr = librosa.load(filename, sr = None,  offset=15.0, duration=5.0)
