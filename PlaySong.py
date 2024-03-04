@@ -11,5 +11,3 @@ sd.play(y,sr)
 sd.wait()
 
 
-
-
