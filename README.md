@@ -5,4 +5,6 @@
 https://librosa.org/doc/latest/index.html
 
 librosa.load
-sampling 
+sampling \\
+Base de donnée : \\
+2 possibilités : serveur SQL ou  CSV.\\
