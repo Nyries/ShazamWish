@@ -1,18 +1,18 @@
 import librosa
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy import ndimage
+from skimage.feature import peak_local_max
 
 filename = "sound/music.mp3"
 
 
-y, sr = librosa.load(filename, sr = None,  offset=15.0, duration=5.0)
-
-
+y, sr = librosa.load(librosa.ex('brahms'),offset=30, duration=10)
 
 
 def fingerprint(audio_file):
     # Load the audio file with librosa
-    y, sr  = librosa.load(audio_file, sr=None)
+    y, sr  = librosa.load(librosa.ex('brahms'),offset=30, duration=10)
 
     print ('Floating point time series of the audio files : \n', y)
 
@@ -32,12 +32,14 @@ def fingerprint(audio_file):
 
     print('Chromagram Values : \n',chromagram)
 
+    #filtered_chromagram= ndimage.maximum_filter(chromagram)
 
-    # Convert in a fingerprint
-    fingerprint = np.argmax(chromagram, axis=0)
-
+    coordinates = peak_local_max(chromagram)
+    #Convert in a fingerprint
     
-    print('Fingerprint : \n',fingerprint.tolist())
+    #fingerprint = np.argmax(chromagram, axis=0)
+    
+    #print('Fingerprint : \n',fingerprint.tolist())
     #Plotting spectrogram and chromagram
     fig, ax = plt.subplots(nrows=3, sharex=True)
     img = librosa.display.specshow(librosa.amplitude_to_db(spectrogram, ref=np.max),y_axis='log', x_axis='time', ax=ax[0])
@@ -47,9 +49,11 @@ def fingerprint(audio_file):
     img = librosa.display.specshow(chromagram, y_axis='chroma', x_axis='time', ax=ax[1])
     fig.colorbar(img, ax=[ax[1]])
 
+    ax[2].plot(coordinates[:,1],coordinates[:,0],'r.')
+    
     plt.show()
 
-    return fingerprint.tolist()
+    # return fingerprint.tolist()
 
 
 fingerprint(filename)
