@@ -56,7 +56,17 @@ def compare_constellation_maps(fn_wav_D, fn_wav_Q, dist_freq = 11, dist_time = 5
     plt.tight_layout()
     plt.show()
 
-def is_same_sound(filename1,filename2):
-    
-    return False
-compare_constellation_maps(filename1,filename2)
+def is_same_sound(filename1,filename2,dist_freq=15, dist_time=15,thresh=0.7,tol_freq=5, tol_time=5):
+    Y_D = compute_spectrogram(filename1)
+    Cmap_D = constellation_map(Y_D, dist_freq, dist_time)
+    Y_Q = compute_spectrogram(filename2)
+    Cmap_Q = constellation_map(Y_Q, dist_freq, dist_time)
+
+    TP, FN, FP, Cmap_AND = match_binary_matrices_tol(Cmap_D, Cmap_Q, tol_freq=tol_freq, tol_time=tol_time)
+    True_ref=np.sum(Cmap_D)
+    True_AND=np.sum(Cmap_AND)
+    if True_AND/True_ref>thresh:
+        return True
+    else:
+        return False
+#is_same_sound(filename1,filename1)
