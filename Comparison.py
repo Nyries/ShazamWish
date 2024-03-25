@@ -69,4 +69,14 @@ def is_same_sound(filename1,filename2,dist_freq=15, dist_time=15,thresh=0.7,tol_
         return True
     else:
         return False
+
+def is_same_sound_db(Cmap_record,Cmap_ref,dist_freq=15, dist_time=15,thresh=0.7,tol_freq=5, tol_time=5):
+
+    TP, FN, FP, Cmap_AND = match_binary_matrices_tol(Cmap_record, Cmap_ref, tol_freq=tol_freq, tol_time=tol_time)
+    True_ref=np.sum(Cmap_ref)
+    True_AND=np.sum(Cmap_AND)
+    if True_AND/True_ref>thresh:
+        return True
+    else:
+        return False
 #is_same_sound(filename1,filename1)
