@@ -1,10 +1,11 @@
 from Constellation_map_class import*
 
 class Musique:
-    def __init__(self, nom, auteur, constellation:Constellation):
+    def __init__(self, nom, auteur, filename,constellation:Constellation):
         self.nom = nom
         self.auteur = auteur
-        self.constellation = constellation.get_cmap()
+        self.filename = filename
+        self.constellation = []
         
 class ListeMusiques:
     def __init__(self):
@@ -20,5 +21,10 @@ class ListeMusiques:
             print("Auteur:", musique.auteur)
             print("Constellation:", musique.constellation)
             print()
+        
+    def ajouter_Nmusiques_from_filenames(songs:list):
+        """songs est une liste de dictionnaire contenant le nom de la chanson, l'auteur et le chemin du fichier"""
+        for song in songs:
+            song_name=
 
 

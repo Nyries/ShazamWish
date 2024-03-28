@@ -62,6 +62,7 @@ class Spectrogram:
     
     def clear_cmap(self):
         self.spectrogram=[]
+    
 
 
 # Y=compute_spectrogram(filename)
